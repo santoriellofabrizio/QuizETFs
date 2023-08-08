@@ -3,7 +3,7 @@ import pandas as pd
 from random import randrange
 
 st.title("ETFs quiz web app")
-filepath = "/Users/fabriziosantoriello/Library/Mobile Documents/com~apple~CloudDocs/listETFs.xlsx"
+filepath = "listETFs.xlsx"
 ETFs = pd.read_excel(filepath,index_col=0)
 
 def getRandom():
