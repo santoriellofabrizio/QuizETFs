@@ -72,7 +72,7 @@ if submit:
             st.success("Right!")
             st.session_state.score += 1
         else:
-            st.write(f"Wrong group, {st.session_state.etf} belongs to {group_answer}, but is {corp_gov_answer}")
+            st.error(f"Wrong group, {st.session_state.etf} belongs to {group_answer}, but is {corp_gov_answer}")
             st.session_state.score += 0.5
     else:
         st.error(f"Wrong! {st.session_state.etf} is {corp_gov_answer}")
