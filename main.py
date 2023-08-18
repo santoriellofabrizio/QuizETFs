@@ -19,7 +19,7 @@ group_col = ["HY EU"]*10 \
             + ["US"]*37\
             + ["GLOBAL"]*9\
             + ["JAPAN"]*4\
-            + ["INFL EU"]*6\
+            + ["INFL EU"]*6\ 
             + ["INFL US"]*11\
             + ["INFL GL"]*6
 
