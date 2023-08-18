@@ -20,7 +20,7 @@ group_col = ["HY EU"]*10 \
             + ["GLOBAL"]*9\
             + ["JAPAN"]*4\
             + ["INFL EU"]*6\
-            + ["INFL US"]*9\
+            + ["INFL US"]*11\
             + ["INFL GL"]*6
 ETFs = pd.DataFrame( [corp_gov_col,group_col],index=["CORP-GOV","Group"],columns=etf_col)
 ETFs = ETFs.T
