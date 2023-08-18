@@ -23,7 +23,6 @@ group_col = ["HY EU"]*10 \
             + ["INFL US"]*11\
             + ["INFL GL"]*6
 
-
 groups = np.array(group_col).unique()
 
 ETFs = pd.DataFrame( [corp_gov_col,group_col],index=["CORP-GOV","Group"],columns=etf_col)
