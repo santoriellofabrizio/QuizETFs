@@ -20,7 +20,8 @@ group_col = ["HY EU"]*10 \
             + ["GLOBAL"]*9\
             + ["JAPAN"]*4\
             + ["INFL EU"]*6\ 
-            + ["INFL US"]*11 + ["INFL GL"]*6
+            + ["INFL US"]*11\
+             + ["INFL GL"]*6
 
 groups = np.array(group_col).unique()
 
