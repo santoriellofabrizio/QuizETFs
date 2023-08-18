@@ -23,12 +23,8 @@ group_col = ["HY EU"]*10 \
             + ["INFL US"]*11\
             + ["INFL GL"]*6
 
-def unique_group(seq):
-    seen = set()
-    seen_add = seen.add
-    return [x for x in seq if not (x in seen or seen_add(x))]
-            
-groups = unique_group(group_col)
+
+groups = np.array(group_col).unique()
 
 ETFs = pd.DataFrame( [corp_gov_col,group_col],index=["CORP-GOV","Group"],columns=etf_col)
 ETFs = ETFs.T
