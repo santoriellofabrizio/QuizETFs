@@ -28,7 +28,7 @@ groups = np.array(group_col).unique()
 
 ETFs = pd.DataFrame( [corp_gov_col,group_col],index=["CORP-GOV","Group"],columns=etf_col)
 ETFs = ETFs.T
-which_group = st.multiselect(f"select the groups you want to test",
+which_group = st.multiselect(f"select the groups you want to exercise with",
                              default=["IG EU","IG US"],
                              options= groups)
 
