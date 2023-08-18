@@ -18,17 +18,17 @@ group_col = ["HY EU"]*10 \
             + ["UE"]*71\
             + ["US"]*37\
             + ["GLOBAL"]*9\
-            + ["JAPAN"]*4 + ["INFL EU"]*6\ 
+            + ["JAPAN"]*4\
+            + ["INFL EU"]*6\
             + ["INFL US"]*11\
-             + ["INFL GL"]*6
-
-groups = np.array(group_col).unique()
+            + ["INFL GL"]*6
+groups = set(group_col)
 
 ETFs = pd.DataFrame( [corp_gov_col,group_col],index=["CORP-GOV","Group"],columns=etf_col)
 ETFs = ETFs.T
-which_group = st.multiselect(f"select the groups you want to exercise with",
+which_group = st.multiselect(f"select the groups you want to test",
                              default=["IG EU","IG US"],
-                             options= groups)
+                             options=groups)
 
 ETFs = ETFs.loc[ETFs["Group"].isin(which_group)]
 
