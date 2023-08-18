@@ -22,13 +22,19 @@ group_col = ["HY EU"]*10 \
             + ["INFL EU"]*6\
             + ["INFL US"]*11\
             + ["INFL GL"]*6
-groups = set(group_col)
+
+def unique_group(seq):
+    seen = set()
+    seen_add = seen.add
+    return [x for x in seq if not (x in seen or seen_add(x))]
+            
+groups = unique_group(group_col)
 
 ETFs = pd.DataFrame( [corp_gov_col,group_col],index=["CORP-GOV","Group"],columns=etf_col)
 ETFs = ETFs.T
 which_group = st.multiselect(f"select the groups you want to test",
                              default=["IG EU","IG US"],
-                             options=groups)
+                             options= groups)
 
 ETFs = ETFs.loc[ETFs["Group"].isin(which_group)]
 
