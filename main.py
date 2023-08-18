@@ -84,6 +84,7 @@ if submit:
         if restart:
             st.balloons()
             st.experimental_rerun()
+            st.stop()
 
 next = st.button("Next")
 
