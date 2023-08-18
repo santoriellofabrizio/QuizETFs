@@ -82,6 +82,7 @@ if submit:
         st.success(f"score: {st.session_state.score /n_question}")
         restart = st.button("restart")
         if restart:
+            st.balloons()
             st.experimental_rerun()
 
 next = st.button("Next")
