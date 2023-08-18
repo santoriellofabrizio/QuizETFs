@@ -80,10 +80,10 @@ if submit:
     st.session_state.current_question += 1
     if st.session_state.current_question >= int(n_question):
         st.success(f"score: {st.session_state.score /n_question}")
+        st.session_state.score = 0
+        st.session_state.current_question = 0
         restart = st.button("restart")
         if restart:
-            st.balloons()
-            st.experimental_rerun()
             st.stop()
 
 next = st.button("Next")
