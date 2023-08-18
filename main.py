@@ -75,7 +75,7 @@ if submit:
             st.write(f"Wrong group, {st.session_state.etf} belongs to {group_answer}, but is {corp_gov_answer}")
             st.session_state.score += 0.5
     else:
-        st.write(f"Wrong! {st.session_state.etf} is {corp_gov_answer}")
+        st.error(f"Wrong! {st.session_state.etf} is {corp_gov_answer}")
     st.session_state.etf = ETFs.index[randrange(0, len(ETFs), 1)]
     st.session_state.current_question += 1
     if st.session_state.current_question >= int(n_question):
