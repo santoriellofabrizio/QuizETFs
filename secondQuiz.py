@@ -16,7 +16,7 @@ ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)]
 rand_group = subgroups[randrange(1, len(subgroups))]
 
 guess = st.multiselect(f"what are the ETFs of {rand_group}?",options=ETFs.index)
-answer = ETFs.loc[ETFs.group == rand_group]
+answer = ETFs.loc[ETFs["Group"] == rand_group]
 
 st.success(f"{guess & answer} are right")
 st.warning(f"{set(guess).difference(set(answer))} are wrong,"
