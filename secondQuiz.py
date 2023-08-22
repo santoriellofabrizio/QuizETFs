@@ -6,6 +6,9 @@ from random import randrange
 def intersection(lst1, lst2):
     lst3 = [value for value in lst1 if value in lst2]
     return lst3
+def diff(lst1,lst2):
+    lst3 = [value for value in lst1 if value not in lst2]
+    return lst3
 
 
 st.title("ETFs quiz web app")
@@ -76,9 +79,13 @@ with st.form("select element of group"):
         right_answers = intersection(answer,guess)
 
         if len(right_answers) == 0:
+            st.write(answer)
+            st.write(right_answers)
             st.warning("everything wrong!")
         else:
- 
+            right_answers = right_answers
+            wrong_answer = diff(st.session_state.guess,answer)
+            missing_answer = diff(answer,st.session_state.guess)
             st.success(f"{right_answers} are right")
-            st.warning(f"{list(set(st.session_state.guess).difference(set(answer)))} are wrong")
-            st.warning(f"and {list(set(answer).difference(set(st.session_state.guess)))} are missing")
+            st.warning(f"{wrong_answer} are wrong")
+            st.warning(f"and {missing_answer} are missing")
