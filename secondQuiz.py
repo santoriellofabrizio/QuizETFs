@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 from random import randrange
 
 
@@ -71,7 +72,7 @@ subgroups = st.multiselect(f"what you want to test?", options=group_col)
 ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)]
 
 with st.form("select element of group"):
-    rand_group = subgroups[randrange(0, max(len(subgroups),1))]
+    rand_group = subgroups[randrange(0,max(1,len(subgroups))))]
     guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
     st.session_state.guess = guess
     submitted = st.form_submit_button("Submit")
