@@ -79,8 +79,7 @@ with st.form("select element of group"):
         right_answers = intersection(answer,guess)
 
         if len(right_answers) == 0:
-            st.write(answer)
-            st.write(right_answers)
+
             st.warning("everything wrong!")
         else:
             right_answers = right_answers
