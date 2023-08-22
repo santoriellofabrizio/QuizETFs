@@ -68,8 +68,6 @@ with st.form("select element of group"):
     if submitted:
         answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
         right_answers = set(st.session_state.guess).intersection(set(answer))
-        st.write(f"ciao {answer}")
-        st.write(right_answers)
         if len(right_answers) == 0:
             
             st.warning("everything wrong!")
