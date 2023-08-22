@@ -68,8 +68,11 @@ ETFs = pd.DataFrame([corp_gov_col, group_col], index=["CORP-GOV", "Group"], colu
 ETFs = ETFs.T
 st.title("guessing ETFs")
 subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
+st.subtitle("choosing difficulty")
+selected = st.multiselect("select group",
+                          options=set(group_col),
+                          default=["HY EU", "HY US", "IG EU", "IG US"])
 
-selected = st.multiselect("select group",options=set(group_col))
 st.session_state.selected = selected
 if "selected" in st.session_state:
     ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)]
