@@ -15,19 +15,13 @@ ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)]
 rand_group = subgroups[randrange(1, len(subgroups))]
 
 
-if "guess" not in st.session_state:
-    st.session_state.guess = "guess"
-else:
-    st.session_state.guess = guess
-    
-guess = st.multiselect(f"what are the ETFs of {rand_group}?",options=ETFs.index,default=st.session_state.guess)
+with st.form:
+    guess = st.multiselect(f"what are the ETFs of {rand_group}?",options=ETFs.index,default=st.session_state.guess)
+    submitted = st.form_submit_button("Submit")
+    if submitted:
+        answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
+        st.success(f"{set(guess).intersection(set(answer))} are right")
+        st.warning(f"{set(guess).difference(set(answer))} are wrong,"
+                   f"and {set(answer).difference(set(guess))} are missing")
+        
 
-answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
-if "guess" not in st.session_state:
-    st.session_state.guess = guess
-
-submit=st.button("submit")
-if submit:
-    st.success(f"{set(guess).intersection(set(answer))} are right")
-    st.warning(f"{set(guess).difference(set(answer))} are wrong,"
-               f"and {set(answer).difference(set(guess))} are missing")
