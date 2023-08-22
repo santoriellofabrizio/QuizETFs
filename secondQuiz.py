@@ -12,11 +12,19 @@ ETFs = ETFs.T
 st.title("guessing ETFs")
 subgroups = ["HY EU","HY US","IG EU","IG US","IG GLOBAL","HY GLOBAL"]
 ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)]
-
 rand_group = subgroups[randrange(1, len(subgroups))]
 
-guess = st.multiselect(f"what are the ETFs of {rand_group}?",options=ETFs.index)
+
+if "guess" is not in st.session_state:
+    st.session_state.guess = "guess"
+else:
+    st.session_state.guess = guess
+    
+guess = st.multiselect(f"what are the ETFs of {rand_group}?",options=ETFs.index,default=st.session_state.guess)
+
 answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
+if "guess" not in st.session_state:
+    st.session_state.guess = guess
 
 submit=st.button("submit")
 if submit:
