@@ -66,7 +66,8 @@ group_col = ["HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY 
 ETFs = pd.DataFrame([corp_gov_col, group_col], index=["CORP-GOV", "Group"], columns=etf_col)
 ETFs = ETFs.T
 st.title("guessing ETFs")
-subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
+subgroups = st.multiselect(f"what you want to test}?", options=group_col)
+#subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
 ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)]
 
 with st.form("select element of group"):
@@ -80,6 +81,8 @@ with st.form("select element of group"):
 
         if len(right_answers) == 0:
             st.warning("everything wrong!")
+        elif len(right_answers) == len(answer):
+            st.success("everything right!")
         else:
             right_answers = right_answers
             wrong_answer = diff(guess,answer)
