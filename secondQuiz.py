@@ -78,7 +78,7 @@ with st.form("select element of group"):
         answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
         right_answers = intersection(answer,st.session_state.guess)
         st.write(answer)
-        st.write(st.session_state.guess)
+        st.write(guess)
 
         if len(right_answers) == 0:
             st.write(st.session_state.guess)
