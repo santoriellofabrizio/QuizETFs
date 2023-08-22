@@ -12,11 +12,11 @@ ETFs = ETFs.T
 st.title("guessing ETFs")
 subgroups = ["HY EU","HY US","IG EU","IG US","IG GLOBAL","HY GLOBAL"]
 ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)]
-rand_group = subgroups[randrange(1, len(subgroups))]
+
 
 
 with st.form("select element of group"):
-
+    rand_group = subgroups[randrange(1, len(subgroups))]
     guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
     submitted = st.form_submit_button("Submit")
     if submitted:
