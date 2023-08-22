@@ -69,15 +69,19 @@ ETFs = ETFs.T
 st.title("guessing ETFs")
 subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
 st.subheader("choosing difficulty")
-selected = st.multiselect("select group",
+selected = st.multiselect("select groups",
                           options=set(group_col),
                           default=["HY EU", "HY US", "IG EU", "IG US"])
+st.divider()
+st.divider()
+st.divider()
 
 st.session_state.selected = selected
 if "selected" in st.session_state:
     ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)]
     with st.form("select element of group"):
         rand_group = subgroups[randrange(0,len(subgroups))]
+        st.title(f"{rand_group})
         guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
         st.session_state.guess = guess
         submitted = st.form_submit_button("Submit")
