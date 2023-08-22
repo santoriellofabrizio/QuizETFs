@@ -15,7 +15,7 @@ ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)]
 rand_group = subgroups[randrange(1, len(subgroups))]
 
 
-if "guess" is not in st.session_state:
+if "guess" not in st.session_state:
     st.session_state.guess = "guess"
 else:
     st.session_state.guess = guess
