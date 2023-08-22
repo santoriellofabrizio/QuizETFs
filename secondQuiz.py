@@ -81,7 +81,7 @@ if "selected" in st.session_state:
     ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)]
     with st.form("select element of group"):
         rand_group = subgroups[randrange(0,len(subgroups))]
-        st.title(f"{rand_group})
+        st.title(f"{rand_group}")
         guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
         st.session_state.guess = guess
         submitted = st.form_submit_button("Submit")
