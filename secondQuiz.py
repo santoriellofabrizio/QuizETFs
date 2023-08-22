@@ -78,7 +78,7 @@ with st.form("select element of group"):
         if len(right_answers) == 0:
             st.warning("everything wrong!")
         else:
-            right_answers = list(right_answers)
+ 
             st.success(f"{right_answers} are right")
             st.warning(f"{list(set(st.session_state.guess).difference(set(answer)))} are wrong")
             st.warning(f"and {list(set(answer).difference(set(st.session_state.guess)))} are missing")
