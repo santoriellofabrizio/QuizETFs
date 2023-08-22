@@ -77,7 +77,7 @@ st.divider()
 
 st.session_state.selected = selected
 if "selected" in st.session_state:
-    ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)].shuffle()
+    ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)].sample(frac=1)
     with st.form("select element of group"):
         rand_group = subgroups[randrange(0,len(subgroups))]
         st.title(f"{rand_group}")
