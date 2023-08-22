@@ -81,7 +81,7 @@ with st.form("select element of group"):
         st.write(st.session_state.guess)
 
         if len(right_answers) == 0:
-
+            st.write(st.session_state.guess)
             st.warning("everything wrong!")
         else:
             right_answers = right_answers
