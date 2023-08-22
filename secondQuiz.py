@@ -66,7 +66,7 @@ group_col = ["HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY 
 ETFs = pd.DataFrame([corp_gov_col, group_col], index=["CORP-GOV", "Group"], columns=etf_col)
 ETFs = ETFs.T
 st.title("guessing ETFs")
-subgroups = st.multiselect(f"what you want to test}?", options=group_col)
+subgroups = st.multiselect(f"what you want to test?", options=group_col)
 #subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
 ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)]
 
