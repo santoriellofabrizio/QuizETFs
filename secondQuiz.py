@@ -73,7 +73,7 @@ selected = st.multiselect("select groups",
                           default=["HY EU", "HY US", "IG EU", "IG US"])
 st.divider()
 st.divider()
-st.divider()
+
 
 st.session_state.selected = selected
 if "selected" in st.session_state:
