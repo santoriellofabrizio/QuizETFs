@@ -66,7 +66,6 @@ group_col = ["HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY 
 
 ETFs = pd.DataFrame([corp_gov_col, group_col], index=["CORP-GOV", "Group"], columns=etf_col)
 ETFs = ETFs.T
-st.title("guessing ETFs")
 subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
 st.subheader("choosing difficulty")
 selected = st.multiselect("select groups",
