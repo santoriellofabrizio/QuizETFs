@@ -16,6 +16,7 @@ rand_group = subgroups[randrange(1, len(subgroups))]
 
 
 with st.form("select element of group"):
+
     guess = st.multiselect(f"what are the ETFs of {rand_group}?",options=ETFs.index,default=st.session_state.guess)
     submitted = st.form_submit_button("Submit")
     if submitted:
