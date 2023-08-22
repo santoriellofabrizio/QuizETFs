@@ -21,8 +21,12 @@ with st.form("select element of group"):
     submitted = st.form_submit_button("Submit")
     if submitted:
         answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
-        st.success(f"{set(guess).intersection(set(answer))} are right")
-        st.warning(f"{set(guess).difference(set(answer))} are wrong,"
-                   f"and {set(answer).difference(set(guess))} are missing")
+        right_answers = set(guess).intersection(set(answer))
+        if len(right_answer)==0:
+            st.warning("everything wrong!")
+        else: 
+            st.success(f"{right_answers} are right")
+            st.warning(f"{set(guess).difference(set(answer))} are wrong"}
+            st.warning(f"and {set(answer).difference(set(guess))} are missing")
         
 
