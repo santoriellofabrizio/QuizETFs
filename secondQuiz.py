@@ -1,4 +1,4 @@
-import streamlit as st
+import streamlit as stn
 import pandas as pd
 from random import randrange
 
