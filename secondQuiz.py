@@ -67,29 +67,32 @@ group_col = ["HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY 
 ETFs = pd.DataFrame([corp_gov_col, group_col], index=["CORP-GOV", "Group"], columns=etf_col)
 ETFs = ETFs.T
 st.title("guessing ETFs")
-subgroups = st.multiselect(f"what you want to test?", options=group_col)
-#subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
-ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)]
-st.session_state.subgroups=subgroups
-
-with st.form("select element of group"):
-    subgroups = st.session_state.subgroups
-    rand_group = subgroups[randrange(0,len(subgroups))]
-    guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
-    st.session_state.guess = guess
-    submitted = st.form_submit_button("Submit")
+with st.form(f"what you want to test?"):
+    
+    subgroups = st.multiselect(f"what you want to test?", options=group_col)
+    #subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
+    ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)]
+    st.session_state.subgroups=subgroups
+    submitted = st.form_submit_button("select")
     if submitted:
-        answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
-        right_answers = intersection(answer,guess)
-
-        if len(right_answers) == 0:
-            st.warning("everything wrong!")
-        elif len(right_answers) == len(answer):
-            st.success("everything right!")
-        else:
-            right_answers = right_answers
-            wrong_answer = diff(guess,answer)
-            missing_answer = diff(answer,guess)
-            st.success(f"{right_answers} are right")
-            st.warning(f"{wrong_answer} are wrong")
-            st.warning(f"and {missing_answer} are missing")
+        with st.form("select element of group"):
+            subgroups = st.session_state.subgroups
+            rand_group = subgroups[randrange(0,len(subgroups))]
+            guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
+            st.session_state.guess = guess
+            submitted = st.form_submit_button("Submit")
+            if submitted:
+                answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
+                right_answers = intersection(answer,guess)
+        
+                if len(right_answers) == 0:
+                    st.warning("everything wrong!")
+                elif len(right_answers) == len(answer):
+                    st.success("everything right!")
+                else:
+                    right_answers = right_answers
+                    wrong_answer = diff(guess,answer)
+                    missing_answer = diff(answer,guess)
+                    st.success(f"{right_answers} are right")
+                    st.warning(f"{wrong_answer} are wrong")
+                    st.warning(f"and {missing_answer} are missing")
