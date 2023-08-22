@@ -26,7 +26,7 @@ with st.form("select element of group"):
             st.warning("everything wrong!")
         else: 
             st.success(f"{right_answers} are right")
-            st.warning(f"{set(guess).difference(set(answer))} are wrong"}
+            st.warning(f"{set(guess).difference(set(answer))} are wrong")
             st.warning(f"and {set(answer).difference(set(guess))} are missing")
         
 
