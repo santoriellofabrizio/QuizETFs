@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 from random import randrange
 
+
+def intersection(lst1, lst2):
+    lst3 = [value for value in lst1 if value in lst2]
+    return lst3
+
+
 st.title("ETFs quiz web app")
 etf_col = ["XTC5", "XHY1", "HYS", "EUHI", "IHYG", "XHYG", "JNKE", "HY", "AHYE", "HYBB", "FLES", "ERNE", "AFRN", "ECRP3",
            "SEUC", "SUSE", "SRIC3", "LDCE", "XZE5", "EBBB", "JR15", "SE15", "CBEU5", "SRIC5", "IQEC", "IEBB", "XDEP",
@@ -67,9 +73,11 @@ with st.form("select element of group"):
     submitted = st.form_submit_button("Submit")
     if submitted:
         answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
-        right_answers = set(st.session_state.guess).intersection(set(answer))
+        right_answers = intersection(answer,guess)
+
         if len(right_answers) == 0:
-            
+            st.write(answer)
+            st.write(right_answers)
             st.warning("everything wrong!")
         else:
             right_answers = list(right_answers)
