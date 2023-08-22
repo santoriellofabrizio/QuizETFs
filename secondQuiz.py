@@ -68,6 +68,7 @@ with st.form("select element of group"):
         answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
         right_answers = set(guess).intersection(set(answer))
         st.warning(answer)
+        st.warning(guess)
         if len(right_answers) == 0:
             st.warning("everything wrong!")
         else:
