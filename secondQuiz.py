@@ -70,8 +70,10 @@ st.title("guessing ETFs")
 subgroups = st.multiselect(f"what you want to test?", options=group_col)
 #subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
 ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)]
+st.session_state.subgroups=subgroups
 
 with st.form("select element of group"):
+    subgroups = st.session_state.subgroups
     rand_group = subgroups[randrange(0,len(subgroups))]
     guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
     st.session_state.guess = guess
