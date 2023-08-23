@@ -88,7 +88,7 @@ with st.form("quiz"):
         submitted = st.form_submit_button("submit")
         
  
-if submitted:
+        if submitted:
             st.write("you sel:", guess)
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
             right_answers = intersection(answer,guess)    
