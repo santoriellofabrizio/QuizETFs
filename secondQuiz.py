@@ -86,7 +86,7 @@ with st.form("quiz"):
         guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index,key="guessing")
         if "guess" not in st.session_state:
             st.session_state.guess = guess
-        submitted = st.form_submit_button("submit")
+      
         
  
         if st.form_submit_button("submit"):
