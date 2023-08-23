@@ -77,9 +77,7 @@ st.session_state.selected = selected
  start = st.button("start")
 st.divider()
 st.divider()
-
-if start:
-    with st.form("quiz"):
+with st.form("quiz"):
 
         ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)].sample(frac=1)
     
