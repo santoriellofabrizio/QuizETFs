@@ -80,15 +80,15 @@ with st.form("quiz"):
 if submit:
             st.write("you sel:", guess)
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
-            right_answers = intersection(answer, st.session_state.guess)    
+            right_answers = intersection(answer,guess)    
             if len(right_answers) == 0:
                 st.warning("everything wrong!")
             elif len(right_answers) == len(answer):
                 st.success("everything right!")
             else:
                 right_answers = right_answers
-                wrong_answer = diff( st.session_state.guess,answer)
-                missing_answer = diff(answer, st.session_state.guess)
+                wrong_answer = diff(guess,answer)
+                missing_answer = diff(answer, guess)
                 st.success(f"{right_answers} are right")
                 st.warning(f"{wrong_answer} are wrong")
                 st.warning(f"and {missing_answer} are missing")
