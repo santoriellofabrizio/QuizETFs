@@ -73,23 +73,25 @@ with st.form("choosing difficulty"):
     selected = st.multiselect("select groups",
                           options=set(group_col),
                           default=["HY EU", "HY US", "IG EU", "IG US"])
+    st.session_state.selected = selected
     start = st.form_submit_button("start")
 st.divider()
 st.divider()
 
 if start:
-    st.session_state.selected = selected
-    ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)].sample(frac=1)
+    with st.form("quiz"):
+        
+        ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)].sample(frac=1)
+    
+        rand_group = st.session_state.selected[randrange(0,len(st.session_state.selected))]
+        st.title(f"{rand_group}")
+        guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
+        if "guess" not in st.session_state:
+            st.session_state.guess = guess
+        submitted = st.form_submit_button("submit")
+        st.write("you sel:",st.session_state.guess)
 
-    rand_group = st.session_state.selected[randrange(0,len(st.session_state.selected))]
-    st.title(f"{rand_group}")
-    guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
-    if "guess" not in st.session_state:
-        st.session_state.guess = guess
-    submitted = st.button("submit")
-    st.write("you sel:",st.session_state.guess)
-
-    if submitted:
+if submitted:
             
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
             right_answers = intersection(answer,guess)    
