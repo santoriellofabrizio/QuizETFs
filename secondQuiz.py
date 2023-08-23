@@ -74,6 +74,7 @@ selected = st.multiselect("select groups",
                           options=set(group_col),
                           default=["HY EU", "HY US", "IG EU", "IG US"])
 st.session_state.selected = selected
+st.write(selected)
 start = st.button("start")
 st.divider()
 
