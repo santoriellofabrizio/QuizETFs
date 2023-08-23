@@ -72,7 +72,7 @@ subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
 with st.form("quiz"):
 
         ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)].sample(frac=1)
-        rand_group = st.subgroups[randrange(0,len(subgroups))]
+        rand_group = subgroups[randrange(0,len(subgroups))]
         st.title(f"{rand_group}")
         guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index,key="guessing")
         if "guess" not in st.session_state:
