@@ -71,6 +71,7 @@ st.subheader("choosing difficulty")
 selected = st.multiselect("select groups",
                           options=set(group_col),
                           default=["HY EU", "HY US", "IG EU", "IG US"])
+st.button("start")
 st.divider()
 st.divider()
 
