@@ -76,31 +76,27 @@ selected = st.multiselect("select groups",
 st.session_state.selected = selected
 start = st.button("start")
 st.divider()
-st.divider()
+
 with st.form("quiz"):
 
         ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)].sample(frac=1)
-    
         rand_group = st.session_state.selected[randrange(0,len(st.session_state.selected))]
         st.title(f"{rand_group}")
         guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index,key="guessing")
         if "guess" not in st.session_state:
             st.session_state.guess = guess
-      
-        
- 
         if st.form_submit_button("submit"):
             st.write("you sel:", st.session_state.guess)
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
-            right_answers = intersection(answer,guess)    
+            right_answers = intersection(answer, st.session_state.guess)    
             if len(right_answers) == 0:
                 st.warning("everything wrong!")
             elif len(right_answers) == len(answer):
                 st.success("everything right!")
             else:
                 right_answers = right_answers
-                wrong_answer = diff(guess,answer)
-                missing_answer = diff(answer,guess)
+                wrong_answer = diff( st.session_state.guess,answer)
+                missing_answer = diff(answer, st.session_state.guess)
                 st.success(f"{right_answers} are right")
                 st.warning(f"{wrong_answer} are wrong")
                 st.warning(f"and {missing_answer} are missing")
