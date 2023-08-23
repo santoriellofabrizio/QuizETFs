@@ -73,9 +73,9 @@ subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
 ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)].sample(frac=1)
 rand_group = subgroups[randrange(0,len(subgroups))]
 st.title(f"{rand_group}")
-guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index,key="guessing")
+st.session_state.guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index,key="guessing")
 submit = button("submit")
-st.write("you sel:", guess)
+st.write("you sel:", st.session_state.guess)
 
 if submit:
             
