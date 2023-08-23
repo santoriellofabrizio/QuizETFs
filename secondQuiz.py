@@ -67,17 +67,18 @@ group_col = ["HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY EU", "HY 
 ETFs = pd.DataFrame([corp_gov_col, group_col], index=["CORP-GOV", "Group"], columns=etf_col)
 ETFs = ETFs.T
 subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
-st.subheader("choosing difficulty")
-selected = st.multiselect("select groups",
+
+with st.form("choosing diffculty"):
+    
+    selected = st.multiselect("select groups",
                           options=set(group_col),
                           default=["HY EU", "HY US", "IG EU", "IG US"])
-st.button("start")
+    start = st.form_submit_button("start")
 st.divider()
 st.divider()
 
-
-st.session_state.selected = selected
-if "selected" in st.session_state:
+if start:
+    st.session_state.selected = selected
     ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)].sample(frac=1)
     with st.form("select element of group"):
         rand_group = st.session_state.selected[randrange(0,len(st.session_state.selected))]
@@ -87,7 +88,7 @@ if "selected" in st.session_state:
             st.session_state.guess = guess
         submitted = st.form_submit_button("Submit")
 
-        if submitted:
+    if submitted:
             st.write("you sel:",st.session_state.guess)
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
             right_answers = intersection(answer,guess)    
