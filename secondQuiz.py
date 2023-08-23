@@ -10,6 +10,7 @@ def intersection(lst1, lst2):
 def diff(lst1,lst2):
     lst3 = [value for value in lst1 if value not in lst2]
     return lst3
+submitted = False
 
 
 st.title("ETFs quiz web app")
