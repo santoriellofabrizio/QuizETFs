@@ -85,13 +85,10 @@ if "selected" in st.session_state:
         guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
         st.session_state.guess = guess
         submitted = st.form_submit_button("Submit")
-        st.write(guess)
+        st.write("you sel:",guess)
         if submitted:
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
-            right_answers = intersection(answer,guess)
-            
-            st.write(answer)
-    
+            right_answers = intersection(answer,guess)    
             if len(right_answers) == 0:
                 st.warning("everything wrong!")
             elif len(right_answers) == len(answer):
