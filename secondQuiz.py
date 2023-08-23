@@ -86,8 +86,9 @@ if "selected" in st.session_state:
         if "guess" not in st.session_state:
             st.session_state.guess = guess
         submitted = st.form_submit_button("Submit")
-        st.write("you sel:",st.session_state.guess)
+
         if submitted:
+            st.write("you sel:",st.session_state.guess)
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
             right_answers = intersection(answer,guess)    
             if len(right_answers) == 0:
