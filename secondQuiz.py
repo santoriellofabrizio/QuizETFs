@@ -80,7 +80,7 @@ st.divider()
 
 if start:
     with st.form("quiz"):
-        
+
         ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)].sample(frac=1)
     
         rand_group = st.session_state.selected[randrange(0,len(st.session_state.selected))]
@@ -90,7 +90,7 @@ if start:
         submitted = st.form_submit_button("submit")
         st.write("you sel:",st.session_state.guess)
  
-    if submitted:
+if submitted:
             st.write("you sel:",st.session_state.guess)
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
             right_answers = intersection(answer,guess)    
