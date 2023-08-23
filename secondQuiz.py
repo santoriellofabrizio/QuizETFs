@@ -69,19 +69,10 @@ ETFs = pd.DataFrame([corp_gov_col, group_col], index=["CORP-GOV", "Group"], colu
 ETFs = ETFs.T
 subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
 
-
-selected = st.multiselect("select groups",
-                          options=set(group_col),
-                          default=["HY EU", "HY US", "IG EU", "IG US"])
-st.session_state.selected = selected
-st.write(selected)
-start = st.button("start")
-st.divider()
-
 with st.form("quiz"):
 
         ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)].sample(frac=1)
-        rand_group = st.session_state.selected[randrange(0,len(st.session_state.selected))]
+        rand_group = st.subgroups[randrange(0,len(subgroups))]
         st.title(f"{rand_group}")
         guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index,key="guessing")
         if "guess" not in st.session_state:
