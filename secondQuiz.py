@@ -69,13 +69,12 @@ ETFs = pd.DataFrame([corp_gov_col, group_col], index=["CORP-GOV", "Group"], colu
 ETFs = ETFs.T
 subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
 
-with st.form("choosing difficulty"):
-    
-    selected = st.multiselect("select groups",
+
+selected = st.multiselect("select groups",
                           options=set(group_col),
                           default=["HY EU", "HY US", "IG EU", "IG US"])
-    st.session_state.selected = selected
-    start = st.form_submit_button("start")
+st.session_state.selected = selected
+ start = st.button("start")
 st.divider()
 st.divider()
 
