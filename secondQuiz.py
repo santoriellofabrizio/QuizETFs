@@ -69,16 +69,16 @@ ETFs = pd.DataFrame([corp_gov_col, group_col], index=["CORP-GOV", "Group"], colu
 ETFs = ETFs.T
 subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
 
-with st.form("quiz"):
 
-        ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)].sample(frac=1)
-        rand_group = subgroups[randrange(0,len(subgroups))]
-        st.title(f"{rand_group}")
-        guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index,key="guessing")
-        submit = st.form_submit_button("submit")
- 
+ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)].sample(frac=1)
+rand_group = subgroups[randrange(0,len(subgroups))]
+st.title(f"{rand_group}")
+guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index,key="guessing")
+submit = button("submit")
+st.write("you sel:", guess)
+
 if submit:
-            st.write("you sel:", guess)
+            
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
             right_answers = intersection(answer,guess)    
             if len(right_answers) == 0:
