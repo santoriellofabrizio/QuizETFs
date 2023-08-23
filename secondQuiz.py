@@ -74,7 +74,7 @@ selected = st.multiselect("select groups",
                           options=set(group_col),
                           default=["HY EU", "HY US", "IG EU", "IG US"])
 st.session_state.selected = selected
- start = st.button("start")
+start = st.button("start")
 st.divider()
 st.divider()
 with st.form("quiz"):
