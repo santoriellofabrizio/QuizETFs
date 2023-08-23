@@ -68,7 +68,7 @@ ETFs = pd.DataFrame([corp_gov_col, group_col], index=["CORP-GOV", "Group"], colu
 ETFs = ETFs.T
 subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
 
-with st.form("choosing diffculty"):
+with st.form("choosing difficulty"):
     
     selected = st.multiselect("select groups",
                           options=set(group_col),
@@ -80,14 +80,14 @@ st.divider()
 if start:
     st.session_state.selected = selected
     ETFs = ETFs.loc[ETFs["Group"].isin(st.session_state.selected)].sample(frac=1)
-    with st.form("select element of group"):
-        rand_group = st.session_state.selected[randrange(0,len(st.session_state.selected))]
-        st.title(f"{rand_group}")
-        guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
-        if "guess" not in st.session_state:
-            st.session_state.guess = guess
-        submitted = st.form_submit_button("Submit")
-        st.write("you sel:",st.session_state.guess)
+
+    rand_group = st.session_state.selected[randrange(0,len(st.session_state.selected))]
+    st.title(f"{rand_group}")
+    guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
+    if "guess" not in st.session_state:
+        st.session_state.guess = guess
+    submitted = button("Submit")
+    st.write("you sel:",st.session_state.guess)
 
     if submitted:
             
