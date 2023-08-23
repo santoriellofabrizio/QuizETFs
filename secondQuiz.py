@@ -88,7 +88,7 @@ if "selected" in st.session_state:
         if submitted:
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
             right_answers = intersection(answer,guess)
-            st.write(guess)
+            st.write(st.session_state.gues)
             st.write(answer)
     
             if len(right_answers) == 0:
