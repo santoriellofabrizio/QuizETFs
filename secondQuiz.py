@@ -75,8 +75,9 @@ with st.form("quiz"):
         rand_group = subgroups[randrange(0,len(subgroups))]
         st.title(f"{rand_group}")
         guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index,key="guessing")
+        submit = st.form_submit_button("submit"
  
-if st.form_submit_button("submit"):
+if submit:
             st.write("you sel:", guess)
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
             right_answers = intersection(answer, st.session_state.guess)    
