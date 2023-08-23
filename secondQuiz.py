@@ -86,8 +86,7 @@ if start:
         rand_group = st.session_state.selected[randrange(0,len(st.session_state.selected))]
         st.title(f"{rand_group}")
         guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
-        if "guess" not in st.session_state:
-            st.session_state.guess = guess
+        st.session_state.guess = guess
         submitted = st.form_submit_button("submit")
         st.write("you sel:",st.session_state.guess)
 
