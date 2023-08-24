@@ -74,7 +74,7 @@ ETFs = ETFs.loc[ETFs["Group"].isin(subgroups)].sample(frac=1)
 rand_group = subgroups[randrange(0,len(subgroups))]
 st.title(f"{rand_group}")
 with st.form("select the ETFs"):
-    st.session_state.guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index,key="guessing")
+    st.session_state.guess = st.multiselect(f"what are the ETFs of {rand_group}?", options=ETFs.index)
     Submit = st.form_submit_button("submit")
     st.write("you sel:", st.session_state.guess)
 
