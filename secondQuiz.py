@@ -78,7 +78,7 @@ with st.form("select the ETFs"):
     Submit = st.form_submit_button("submit")
     st.write("you sel:", st.session_state.guess)
 
-if Submit:
+ if Submit:
             
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
             right_answers = intersection(answer,st.session_state.guess)    
