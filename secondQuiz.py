@@ -81,15 +81,15 @@ with st.form("select the ETFs"):
 if Submit:
             
             answer = ETFs.loc[ETFs["Group"] == rand_group].index.tolist()
-            right_answers = intersection(answer,guess)    
+            right_answers = intersection(answer,st.session_state.guess)    
             if len(right_answers) == 0:
                 st.warning("everything wrong!")
             elif len(right_answers) == len(answer):
                 st.success("everything right!")
             else:
                 right_answers = right_answers
-                wrong_answer = diff(guess,answer)
-                missing_answer = diff(answer, guess)
+                wrong_answer = diff(guess,st.session_state.guess)
+                missing_answer = diff(answer, st.session_state.guess)
                 st.success(f"{right_answers} are right")
                 st.warning(f"{wrong_answer} are wrong")
                 st.warning(f"and {missing_answer} are missing")
