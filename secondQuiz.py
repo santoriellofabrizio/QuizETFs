@@ -347,7 +347,7 @@ ETFs.set_index("Code",inplace=True)
 etf_col = ETFs.index.tolist()
 
 ETFs = pd.DataFrame([corp_gov_col, group_col], index=["CORP-GOV", "Group"], columns=etf_col)
-ETFs.to_excel("myETFlist.xlsx")
+
 ETFs = ETFs.T
 ETFs = ETFs.sample(frac=1)
 subgroups = ["HY EU", "HY US", "IG EU", "IG US", "IG GLOBAL", "HY GLOBAL"]
