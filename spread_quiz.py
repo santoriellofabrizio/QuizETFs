@@ -21,11 +21,7 @@ def main():
             mid_ans = st.number_input("Enter mid price:", value=bid, step=0.001,format="%.3f")
             spread_ans = st.number_input("Enter spread in bp:", step=0.001,format="%.1f")
 
-            # Utilizza una variabile di stato per tenere traccia dello stato di invio del modulo
-            st.session_state.form_submitted = st.form_submit_button("Submit Answers")
-            if st.session_state.form_submitted:
-                # Aggiungi le risposte alla variabile di sessione
-                st.session_state.responses = {
+            st.session_state.responses = {
                     "Quantity": quantity,
                     "Bid": bid,
                     "Ask": ask,
@@ -35,6 +31,9 @@ def main():
                     "Spread Answer": spread_ans
                 }
 
+            # Utilizza una variabile di stato per tenere traccia dello stato di invio del modulo
+            st.session_state.form_submitted = st.form_submit_button("Submit Answers")
+
             if st.session_state.form_submitted:
                 # Visualizza le risposte solo se il modulo è stato effettivamente inviato
                 st.title("Responses")
@@ -42,6 +41,7 @@ def main():
                 st.write(f"Real mid: {response['Real mid']:.3f}")
                 st.write(f"Real spread: {response['Real spread']*10000:.3f}")
                 st.write("--------------------------------------------------------")
+                st.session_state.form_submitted = False
 
 if __name__ == "__main__":
     main()
