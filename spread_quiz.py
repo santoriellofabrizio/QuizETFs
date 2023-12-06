@@ -42,6 +42,10 @@ def main():
                 st.write(f"Real spread: {response['Real spread']*10000:.3f}")
                 st.write("--------------------------------------------------------")
                 st.session_state.form_submitted = False
+         # Add a button to refresh the page
+    if st.button("Refresh Page"):
+        st.caching.clear_cache()
+        st.experimental_rerun()
 
 if __name__ == "__main__":
     main()
