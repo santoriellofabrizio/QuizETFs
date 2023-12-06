@@ -45,7 +45,6 @@ def main():
 
     # Add a button to refresh the page
     if st.button("Refresh Page"):
-        st.caching.clear_cache()
         st.experimental_rerun()
 
 if __name__ == "__main__":
