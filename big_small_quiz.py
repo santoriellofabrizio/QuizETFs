@@ -9,31 +9,41 @@ def generate_question():
     return big, small
 
 def main():
+
     st.title("Guess game")
+    if "submitted" not in st.session_state or  st.session_state.submitted:
+        st.session_state.big, st.session_state.small = generate_question()
 
-    big, small = generate_question()
-    st.write(f"Prodotto di {big} X {small} ?")
+    st.write(f"Prodotto di {st.session_state.big} X {st.session_state.small} ?")
+    st.session_state.ans = st.session_state.big * st.session_state.small
 
-    ans = big * small
-
-    # Utilizza st.text_input per permettere all'utente di inserire la risposta
-    user_answer = st.text_input("Inserisci la tua risposta", key="user_answer")
-
-    if user_answer:
+    user_answer = st.text_input("Inserisci la tua risposta", key="user_answer", placeholder="",value="")
+    st.session_state.submitted = st.button("submit")
+    if st.session_state.submitted:
         if user_answer[-1].lower() == "k":
             user_answer = float(user_answer[:-1])*1000
-        elif user_answer[-2].lower() == "bp":
+        elif user_answer[-2:].lower() == "bp":
             user_answer = float(user_answer[:-2])/10000
+        elif user_answer[-1].lower() == "m":
+            user_answer = float(user_answer[:-1])*1000000
         else:
             user_answer = float(user_answer)
-
-        st.write(f"answer: {ans}")
-        error_perc = round(abs(ans - user_answer)/ans,2)
+        st.write(f"answer: {st.session_state.ans}")
+        st.write(f"you answered {user_answer}")
+        error_perc = round(abs(st.session_state.ans - user_answer)/st.session_state.ans, 2)
         st.write(f"error perc: {error_perc*100}%")
-        if error_perc < 0.1:
+        if error_perc < 0.2:
             st.success("right!")
         else:
             st.error("wrong!")
+
+
+
+    # Aggiungi un pulsante per aggiornare l'app
+    if st.button("Refresh App"):
+        st.session_state.submitted = False
+
+        st.experimental_rerun()
 
 if __name__ == "__main__":
     main()
