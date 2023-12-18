@@ -42,7 +42,7 @@ def main():
 
 
     # Aggiungi un pulsante per aggiornare l'app
-    if st.button("Refresh App"):
+    if st.button("next question"):
         st.session_state.submitted = False
 
         st.experimental_rerun()
