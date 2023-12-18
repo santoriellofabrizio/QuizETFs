@@ -3,7 +3,7 @@ import streamlit as st
 
 def generate_question():
     big = random.randint(1, int(1e3))
-    big_scale = random.choice([1, 0.1, 0.01 10, 100, 1000, 10000])
+    big_scale = random.choice([1, 0.1, 0.01, 10, 100, 1000, 10000])
     big *= big_scale
     small_num = random.randint(1, 100)
     small_scale = random.choice([1, 0.1, 0.01, 0.001, 0.0001, 0.00001])
