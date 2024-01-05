@@ -13,7 +13,6 @@ st.title("Portfolio Performance Viewer")
 
 # Create a session with proxies
 session = requests.Session()
-session.proxies = proxies
 
 # Define the list of tickers
 tickers_list = "36BZ.DE MTPI.PA BTC-EUR VNRA.DE EGLN.L EUNK.DE"
